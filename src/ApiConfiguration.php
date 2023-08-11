@@ -152,6 +152,11 @@ class ApiConfiguration
             'parameters' => ['space', 'webhook'],
             'id' => '',
         ],
+        Resource\BulkAction::class => [
+            'uri' => '/spaces/{space}/environments/{environment}/bulk_actions/actions/{action}',
+            'parameters' => ['space', 'environment'],
+            'id' => 'action',
+        ],
     ];
 
     /**
@@ -170,6 +175,7 @@ class ApiConfiguration
         'Space' => Resource\Space::class,
         'Upload' => Resource\Upload::class,
         'WebhookDefinition' => Resource\Webhook::class,
+        'BulkAction' => Resource\BulkAction::class,
     ];
 
     /**
