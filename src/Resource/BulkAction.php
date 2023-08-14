@@ -44,6 +44,9 @@ class BulkAction extends BaseResource
         'action' => $this->action,
         'payload' => [
           'entities' => [
+            'sys' => [
+              'type' => 'Array'
+            ],
             'items' => $this->items,
           ]
         ],
