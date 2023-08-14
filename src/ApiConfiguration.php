@@ -168,7 +168,7 @@ class ApiConfiguration
             'id' => '',
         ],
         Resource\BulkActionValidate::class => [
-            'uri' => '/spaces/{space}/environments/{environment}/bulk_actions/unpublish',
+            'uri' => '/spaces/{space}/environments/{environment}/bulk_actions/validate',
             'parameters' => ['space', 'environment'],
             'id' => '',
         ],

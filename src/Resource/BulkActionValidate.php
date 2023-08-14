@@ -19,6 +19,24 @@ class BulkActionValidate extends BulkAction implements CreatableInterface
     /**
      * {@inheritdoc}
      */
+    public function jsonSerialize(): mixed
+    {
+      return [
+        'sys' => $this->sys,
+        'action' => $this->action,
+        'entities' => [
+            'sys' => [
+                    'type' => 'Array'
+                ],
+            'items' => $this->items,
+        ],
+        'error' => $this->error
+      ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function asRequestBody()
     {
         $body = $this->jsonSerialize();

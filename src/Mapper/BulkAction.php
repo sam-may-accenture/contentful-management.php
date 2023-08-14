@@ -22,13 +22,13 @@ class BulkAction extends BaseMapper
     public function map($resource, array $data): ResourceClass
     {
         $itemLinks = \array_map(function ($link) {
-          return new Link($link['id'], $link['linkType']);
+          return new Link($link['sys']['id'], $link['sys']['linkType']);
         }, $data['payload']['entities']['items']);
         /** @var ResourceClass */
         $bulkAction = $this->hydrator->hydrate($resource ?: ResourceClass::class, [
             'sys' => new SystemProperties($data['sys']),
             'items' => $itemLinks,
-            'error' => $data['error'],
+            'error' => isset($data['error']) ? $data['error'] : [],
         ]);
 
         return $bulkAction;
