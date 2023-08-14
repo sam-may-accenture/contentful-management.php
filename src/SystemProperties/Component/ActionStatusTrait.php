@@ -3,27 +3,29 @@
 declare(strict_types=1);
 
 namespace Contentful\Management\SystemProperties\Component;
+use Contentful\Management\SystemProperties\Component\ActionStatus;
 
 trait ActionStatusTrait
 {
     /**
-     * @var string
+     * @var ActionStatus
      */
     protected $status;
 
     protected function initStatus(array $data)
     {
-        $this->status = $data['status'] ?? '';
+        $status = $data['status'] ?? '';
+        $this->status = ActionStatus::tryFrom($status) ?? ActionStatus::Blank;
     }
 
     protected function jsonSerializeStatus(): array
     {
         return [
-            'status' => $this->status,
+            'status' => $this->status->value,
         ];
     }
 
-    public function getStatus(): string
+    public function getStatus(): ActionStatus
     {
         return $this->status;
     }
