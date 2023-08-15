@@ -4,8 +4,6 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\SystemProperties\BulkAction as SystemProperties;
 use Contentful\Core\Api\Link;
-use Contentful\Management\Resource\Behavior\CreatableInterface;
-use function GuzzleHttp\json_encode as guzzle_json_encode;
 
 class BulkAction extends BaseResource
 {
