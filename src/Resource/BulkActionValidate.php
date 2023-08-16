@@ -4,6 +4,7 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
+use Contentful\Core\Api\Link;
 
 class BulkActionValidate extends BulkAction implements CreatableInterface
 {
@@ -21,17 +22,17 @@ class BulkActionValidate extends BulkAction implements CreatableInterface
      */
     public function jsonSerialize(): mixed
     {
-      return [
-        'sys' => $this->sys,
-        'action' => $this->action,
-        'entities' => [
-            'sys' => [
+        return [
+            'sys' => $this->sys,
+            'action' => $this->action,
+            'entities' => [
+                'sys' => [
                     'type' => 'Array'
                 ],
-            'items' => $this->items,
-        ],
-        'error' => $this->error
-      ];
+                'items' => $this->items,
+            ],
+            'error' => $this->error
+        ];
     }
 
     /**

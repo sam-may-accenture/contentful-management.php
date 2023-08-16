@@ -4,12 +4,12 @@ namespace Contentful\Management\Resource;
 
 use Contentful\Management\Resource\Behavior\CreatableInterface;
 use function GuzzleHttp\json_encode as guzzle_json_encode;
-use Contentful\Core\Api\Link;
+use Contentful\Management\LinkWithVersion;
 
 class BulkActionPublish extends BulkAction implements CreatableInterface
 {
     /**
-     * @param Link[] $items
+     * @param LinkWithVersion[] $items
      */
     public function __construct(array $items = [])
     {
@@ -22,17 +22,17 @@ class BulkActionPublish extends BulkAction implements CreatableInterface
      */
     public function jsonSerialize(): mixed
     {
-      return [
-        'sys' => $this->sys,
-        'action' => $this->action,
-        'entities' => [
-            'sys' => [
+        return [
+            'sys' => $this->sys,
+            'action' => $this->action,
+            'entities' => [
+                'sys' => [
                     'type' => 'Array'
                 ],
-            'items' => $this->items,
-        ],
-        'error' => $this->error
-      ];
+                'items' => $this->items,
+            ],
+            'error' => $this->error
+        ];
     }
 
     /**
@@ -45,6 +45,7 @@ class BulkActionPublish extends BulkAction implements CreatableInterface
         unset($body['sys']);
         unset($body['error']);
         unset($body['action']);
+        unset($body['entities']['sys']);
 
         return guzzle_json_encode((object) $body, \JSON_UNESCAPED_UNICODE);
     }
@@ -56,6 +57,4 @@ class BulkActionPublish extends BulkAction implements CreatableInterface
     {
         return [];
     }
-
-    // TODO: need to add version attribute to link attribute for publish action; need to extend Links to have version sys parameter
 }
