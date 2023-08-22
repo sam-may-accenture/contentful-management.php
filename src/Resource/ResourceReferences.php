@@ -37,7 +37,7 @@ class ResourceReferences extends BaseResource implements \Countable, \ArrayAcces
     {
         $this->items = $items;
         $this->includes = $includes;
-        $this->flatIncludes = array_merge(...$includes);
+        $this->flatIncludes = array_merge(...array_values($includes));
     }
 
     /**
